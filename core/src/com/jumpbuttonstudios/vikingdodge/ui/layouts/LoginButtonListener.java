@@ -21,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.jumpbuttonstudios.vikingdodge.VikingDodge;
 import com.jumpbuttonstudios.vikingdodge.event.Event;
 import com.jumpbuttonstudios.vikingdodge.network.Network;
-import com.jumpbuttonstudios.vikingdodge.ui.popup.FacebookOrJBSPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.LoginPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.LogoutConfirmationPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.NoConnectionPopup;

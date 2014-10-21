@@ -18,7 +18,6 @@ package com.jumpbuttonstudios.vikingdodge.entity.spawn;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.gibbo.gameutil.time.TimeConversion;
 import com.jumpbuttonstudios.vikingdodge.entity.EntityHandler;
 import com.jumpbuttonstudios.vikingdodge.interfaces.Updatable;
 

@@ -185,26 +185,26 @@ public class HighscoresPopup extends Popup {
 		float xIncrement = 515;
 		String style = "smallLabel";
 		personal.addActor(new StatLabel(vikingDodge.stats.gamesPlayed,
-				Assets.skin.get(style, LabelStyle.class), 505, y));
+				Assets.skin.get(style, LabelStyle.class), x, y));
 		personal.addActor(new StatLabel(vikingDodge.stats.bouldersDodges,
-				Assets.skin.get(style, LabelStyle.class), 505, y - (yIncrement)));
+				Assets.skin.get(style, LabelStyle.class), x, y - (yIncrement)));
 		personal.addActor(new StatLabel(vikingDodge.stats.timesSqaushed,
-				Assets.skin.get(style, LabelStyle.class), 505, y
+				Assets.skin.get(style, LabelStyle.class), x, y
 						- (yIncrement * 2)));
 		personal.addActor(new StatLabel(vikingDodge.stats.sheepSaved,
-				Assets.skin.get(style, LabelStyle.class), 505, y
+				Assets.skin.get(style, LabelStyle.class), x, y
 						- (yIncrement * 3)));
 		personal.addActor(new StatLabel(vikingDodge.stats.sheepKilled,
-				Assets.skin.get(style, LabelStyle.class), 505, y
+				Assets.skin.get(style, LabelStyle.class), x, y
 						- (yIncrement * 4)));
 
 		personal.addActor(new StatLabel(vikingDodge.stats.highScore,
-				Assets.skin.get(style, LabelStyle.class), 505 + xIncrement, y));
+				Assets.skin.get(style, LabelStyle.class), x + xIncrement, y));
 		personal.addActor(new StatLabel(vikingDodge.stats.dragonsSpawned,
-				Assets.skin.get(style, LabelStyle.class), 505 + xIncrement, y
+				Assets.skin.get(style, LabelStyle.class), x + xIncrement, y
 						- (yIncrement)));
 		personal.addActor(new StatLabel(vikingDodge.stats.deathByFireball,
-				Assets.skin.get(style, LabelStyle.class), 505 + xIncrement, y
+				Assets.skin.get(style, LabelStyle.class), x + xIncrement, y
 						- (yIncrement * 2)));
 	}
 

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.android.vending.billing.IInAppBillingService;
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -23,11 +22,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.internal.in;
 import com.jumpbuttonstudio.logger.Log;
 import com.jumpbuttonstudios.vikingdodge.VikingDodge;
 import com.jumpbuttonstudios.vikingdodge.interfaces.AdListener;
-import com.jumpbuttonstudios.vikingdodge.network.Network;
 
 public class AndroidLauncher extends AndroidApplication implements AdListener {
 
@@ -48,8 +45,6 @@ public class AndroidLauncher extends AndroidApplication implements AdListener {
 	public enum AdState {
 		TOP, BOTTOM, FULL, ENABLE, DISABLE;
 	}
-
-	FacebookImplementation facebookService;
 	AndroidLauncher androidLauncher;
 
 	AdRequest request = new AdRequest.Builder().addTestDevice(
@@ -122,8 +117,6 @@ public class AndroidLauncher extends AndroidApplication implements AdListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		vikingDodge = new VikingDodge();
-		facebookService = new FacebookImplementation(this);
-		Network.setFacebookService(facebookService);
 		VikingDodge.setAdListener(this);
 		androidLauncher = this;
 		layout = new RelativeLayout(this);

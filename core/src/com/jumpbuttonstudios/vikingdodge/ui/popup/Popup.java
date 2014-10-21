@@ -25,9 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.jumpbuttonstudios.vikingdodge.Assets;
-import com.jumpbuttonstudios.vikingdodge.SoundManager;
 import com.jumpbuttonstudios.vikingdodge.VikingDodge;
-import com.jumpbuttonstudios.vikingdodge.event.Event;
 import com.jumpbuttonstudios.vikingdodge.ui.layouts.Layout;
 
 public abstract class Popup extends Table {

@@ -16,8 +16,6 @@
 
 package com.jumpbuttonstudios.vikingdodge.ui.popup;
 
-import java.util.zip.Adler32;
-
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -53,7 +51,7 @@ public class GameOverPopup extends Popup {
 				Assets.get(Assets.UI_WINDOW_GAMEOVER)), 1, false, false);
 
 		toFront();
-		VikingDodge.adListener.requestAd(AdListener.FULL);
+		VikingDodge.adListener.requestAd(AdListener.TOP);
 	}
 
 	@Override
@@ -122,6 +120,7 @@ public class GameOverPopup extends Popup {
 			public void tap(InputEvent event, float x, float y, int count,
 					int button) {
 				moveOut(1, false, Interpolation.exp10);
+				VikingDodge.adListener.closeAd(AdListener.REMOVE_TOP);
 				gs.getOverlay().addAction(
 						Actions.sequence(Actions.moveTo(0, 0, 1,
 								Interpolation.bounceOut), Actions
@@ -142,6 +141,8 @@ public class GameOverPopup extends Popup {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
+				VikingDodge.adListener.closeAd(AdListener.REMOVE_TOP);
+				VikingDodge.adListener.requestAd(AdListener.BOTTOM);
 				fadeOverlay();
 				moveOut(1, false);
 				parent.notify(null, Event.CHANGED_TO_MENU);

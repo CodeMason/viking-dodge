@@ -26,7 +26,6 @@ import com.jumpbuttonstudio.HighscoreResult;
 import com.jumpbuttonstudio.api.API;
 import com.jumpbuttonstudio.logger.Log;
 import com.jumpbuttonstudios.vikingdodge.Assets;
-import com.jumpbuttonstudios.vikingdodge.interfaces.FacebookService;
 
 public class Network {
 
@@ -35,9 +34,6 @@ public class Network {
 	static String authenticationKey;
 	static String devID;
 	static int gameID;
-
-	/* The client API to use */
-	static FacebookService facebookService;
 
 	/* If a facebook login request was sent */
 	static boolean requestSent;
@@ -159,16 +155,6 @@ public class Network {
 		}
 	}
 
-	public static void login() {
-		new Thread() {
-
-			@Override
-			public void run() {
-				facebookService.logIn();
-				requestSent = true;
-			}
-		}.start();
-	}
 
 	public static void logout() {
 		api.logout();
@@ -193,49 +179,14 @@ public class Network {
 		scoreSubmited = true;
 	}
 
-	public static boolean userAcceptedFacebookLoginRequest() {
-		if (facebookService.userAcceptedFacebookLogin() && requestSent) {
-			setLoggedIn(true);
-			return true;
-		}
-		return false;
-	}
 	
-	public static boolean userFetched(){
-		if(facebookService.userFetched()){
-			facebookService.setCanChangeGameState(true);
-		}
-		return facebookService.userFetched();
-	}
 
-	public static boolean canGameStateChange() {
-		boolean stateChange;
-		if (facebookService.canChangeGameState()) {
-			Network.username = facebookService.getFirstName();
-			avatar = ImageDownloader.downloadUsngGDX(Network.getAvatar());
-			setAvatarDownloaded(true);
-			Assets.skin.add("avatar", new TextureRegionDrawable(
-					new TextureRegion(getAvatarAsTexture())));
-			Log.info("Network", "Logged in as '" + username + "'");
-			Log.info("Network", "Avatar URL : " + facebookService.getAvatar());
-			stateChange = facebookService.canChangeGameState();
-			facebookService.setCanChangeGameState(false);
-			requestSent = false;
-			return stateChange;
-		}
-		return false;
-	}
 
 	public static String getUsername() {
 		if (isLoggedIn)
 			return username.toUpperCase();
 		return "GUEST";
 	}
-
-	public static String getAvatar() {
-		return facebookService.getAvatar();
-	}
-	
 	public static Texture getAvatarAsTexture(){
 		return ImageDownloader.convertToTexture(avatar);
 	}
@@ -280,11 +231,4 @@ public class Network {
 		return scoreSubmited;
 	}
 
-	public static void setFacebookService(FacebookService facebookService) {
-		Network.facebookService = facebookService;
-	}
-
-	public static FacebookService getFacebookService() {
-		return facebookService;
-	}
 }

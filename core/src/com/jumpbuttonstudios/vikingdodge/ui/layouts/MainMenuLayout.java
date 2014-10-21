@@ -17,7 +17,6 @@ import com.jumpbuttonstudios.vikingdodge.event.Event;
 import com.jumpbuttonstudios.vikingdodge.interfaces.AdListener;
 import com.jumpbuttonstudios.vikingdodge.network.Network;
 import com.jumpbuttonstudios.vikingdodge.screens.GameScreen;
-import com.jumpbuttonstudios.vikingdodge.ui.popup.FacebookOrJBSPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.HighscoresPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.PlayerAvatarPopup;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.TutorialPopup;
@@ -54,7 +53,6 @@ public class MainMenuLayout extends Layout {
 
 	Layout layout;
 
-	FacebookOrJBSPopup facebookOrJBSPopup;
 
 	public MainMenuLayout(final VikingDodge vikingDodge) {
 		super(vikingDodge);
@@ -83,7 +81,6 @@ public class MainMenuLayout extends Layout {
 				Assets.skin.get("highscores", ButtonStyle.class));
 		play = new Button(Assets.skin.get("play", ButtonStyle.class));
 		login = new Button(Assets.skin.get("login", ButtonStyle.class));
-		facebookOrJBSPopup = new FacebookOrJBSPopup(vikingDodge, this);
 		howToPlay = new Button(
 				Assets.skin.get("howToButton", ButtonStyle.class));
 

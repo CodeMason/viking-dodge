@@ -17,7 +17,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'Viking Dodge'
+        appName = 'Viking Dodge-STABLE 0.6.8c'
         gdxVersion = '1.0.0'
         roboVMVersion = '0.0.11'
     }
@@ -56,7 +56,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
-        compile 'com.google.android.gms:play-services:5.+'
     }
 }
 

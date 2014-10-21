@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.jumpbuttonstudios.vikingdodge.Assets;
 import com.jumpbuttonstudios.vikingdodge.VikingDodge;
 import com.jumpbuttonstudios.vikingdodge.event.EventTriggerer;
-import com.jumpbuttonstudios.vikingdodge.interfaces.AdListener;
 import com.jumpbuttonstudios.vikingdodge.screens.MainMenuScreen;
 import com.jumpbuttonstudios.vikingdodge.ui.HudTable;
 import com.jumpbuttonstudios.vikingdodge.ui.popup.GameOverPopup;

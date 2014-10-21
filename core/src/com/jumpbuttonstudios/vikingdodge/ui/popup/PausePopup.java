@@ -1,7 +1,5 @@
 package com.jumpbuttonstudios.vikingdodge.ui.popup;
 
-import java.util.zip.Adler32;
-
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -128,7 +126,7 @@ public class PausePopup extends Popup {
 				gs.getOverlay().toFront();
 				moveOut(1, false);
 				playPauseButton.setStyle(pause);
-				VikingDodge.adListener.closeAd(AdListener.TOP);
+				VikingDodge.adListener.closeAd(AdListener.REMOVE_TOP);
 				
 				gs.getOverlay().addAction(
 						Actions.sequence(Actions.moveTo(0, 0, 1,
