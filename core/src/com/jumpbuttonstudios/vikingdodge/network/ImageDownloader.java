@@ -32,7 +32,7 @@ import com.esotericsoftware.minlog.Log;
 
 public class ImageDownloader {
 
-	public static byte[] download(byte[] bytes, String url) {
+	public static byte[] download(String url) {
         InputStream i = null;
         HttpURLConnection connection;
         try {
@@ -42,9 +42,10 @@ public class ImageDownloader {
             connection.setUseCaches(true);
             i = connection.getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            byte[] data = new byte[1024];
             int len = 0;
-            while ((len = i.read(bytes, 0, bytes.length)) != -1) {
-                buffer.write(bytes, 0, len);
+            while ((len = i.read(data, 0, data.length)) != -1) {
+                buffer.write(data, 0, len);
                 System.out.println(len);
             }
             buffer.flush();
@@ -98,8 +99,8 @@ public class ImageDownloader {
 	}
 
 	public static DownloadedImage downloadImage(String url) {
-		byte[] bytes = new byte[200 * 1024];
-		int len = download(bytes, url).length;
+		byte[] bytes = download(url);
+		int len = bytes.length;
 		return new DownloadedImage(bytes, len);
 	}
 
