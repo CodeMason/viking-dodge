@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-
 package com.jumpbuttonstudios.vikingdodge.network;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -28,90 +28,91 @@ import com.badlogic.gdx.Net.HttpResponse;
 import com.badlogic.gdx.Net.HttpResponseListener;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.esotericsoftware.minlog.Log;
 
 public class ImageDownloader {
 
-	
-	public static int download(byte[] out, String url){
-		InputStream i = null;
-		HttpURLConnection connection;
-		try {
-			connection = (HttpURLConnection) new URL(url).openConnection();
-			connection.setDoInput(true);
-			connection.setDoOutput(false);
-			connection.setInstanceFollowRedirects(true);
-			connection.setUseCaches(true);
-			i = connection.getInputStream();
-			int readBytes = 0;
-			while(true){
-				int len = i.read(out, readBytes, out.length - readBytes);
-				if(len == -1)	
-					break;
-				readBytes += len;
-			}
-			return readBytes;
-			
-		} catch (Exception e) {
-			return 0;
-		}finally{
-			try {
-				i.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}		
-	}
-	
-	public static DownloadedImage downloadUsngGDX(String url){
+	public static byte[] download(byte[] bytes, String url) {
+        InputStream i = null;
+        HttpURLConnection connection;
+        try {
+            connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setDoInput(true);
+            connection.setDoOutput(false);
+            connection.setUseCaches(true);
+            i = connection.getInputStream();
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int len = 0;
+            while ((len = i.read(bytes, 0, bytes.length)) != -1) {
+                buffer.write(bytes, 0, len);
+                System.out.println(len);
+            }
+            buffer.flush();
+            Log.info("DATA", "Done loading data.");
+            return buffer.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                i.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+	public static DownloadedImage downloadUsngGDX(String url) {
 		HttpRequest httpRequest = new HttpRequest(Net.HttpMethods.GET);
 		httpRequest.setUrl(url);
 		final DownloadedImage dlImage = new DownloadedImage();
-		
+
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
-			
+
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
 				final int code = httpResponse.getStatus().getStatusCode();
-				if(code != 200) return;
-				
+				if (code != 200)
+					return;
+
 				dlImage.setBytes(httpResponse.getResult());
 				dlImage.setNumBytes(httpResponse.getResult().length);
-				
+
 			}
-			
+
 			@Override
 			public void failed(Throwable t) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void cancelled() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		return dlImage;
-		
+
 	}
-	
-	public static DownloadedImage downloadImage(String url){
+
+	public static DownloadedImage downloadImage(String url) {
 		byte[] bytes = new byte[200 * 1024];
-		int len = download(bytes, url);
+		int len = download(bytes, url).length;
 		return new DownloadedImage(bytes, len);
 	}
-	
-	public static Texture convertToTexture(DownloadedImage downloadedImage){
+
+	public static Texture convertToTexture(DownloadedImage downloadedImage) {
 		byte[] bytes = downloadedImage.getBytes();
 		int numbBytes = downloadedImage.getNumBytes();
-		
-		if(numbBytes != 0){
+
+		if (numbBytes != 0) {
 			Pixmap tmp = new Pixmap(bytes, 0, numbBytes);
 			return new Texture(tmp);
-			
-		}		
+
+		}
 		return null;
 	}
-	
+
 }
